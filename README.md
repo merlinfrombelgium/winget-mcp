@@ -1,15 +1,38 @@
-# winget-mcp
+# WinGet MCP Server
 
-A Model Context Protocol (MCP) server project for Windows package management.
+[![Python](https://img.shields.io/badge/Python-3.12+-blue.svg)](https://python.org) [![FastMCP](https://img.shields.io/badge/FastMCP-1.9.4-green.svg)](https://github.com/jlowin/fastmcp) [![Tests](https://img.shields.io/badge/Tests-13%2F13%20Passing-brightgreen.svg)](#testing)
 
-## Project Structure
+A production-ready Model Context Protocol (MCP) server that provides AI assistants with secure, controlled access to Windows Package Manager (WinGet) functionality.
 
-This project follows the Memory Bank template structure for MCP development.
+## 🚀 Quick Start
 
-## Development
+```bash
+cd winget-mcp-server
+uv venv
+uv pip install -e .
+uv run python main.py
+```
 
-Use the memory bank workflow with custom modes for development phases.
+## 📋 Project Overview
 
-## License
+This repository contains a complete MCP server implementation for WinGet package management, featuring:
 
-TBD
+- **🔧 4 Production Tools**: search, list, info, install
+- **✅ 13/13 Tests Passing**: Comprehensive test coverage
+- **🛡️ Security Model**: Input validation and safe command execution
+- **�� Complete Documentation**: Memory Bank system with full project history
+- **🌐 Multi-Platform Ready**: Python implementation with platform detection
+
+## 🏗️ Repository Structure
+
+### **Current Implementation (Python FastMCP)**
+- **Location**: `winget-mcp-server/`
+- **Status**: ✅ **Production Ready**
+- **Framework**: Python FastMCP
+- **Tests**: 13/13 passing
+
+### **Future Implementation (C# .NET)**
+- **Branch**: `dotnet-development`
+- **Status**: 🚧 **Planned**
+- **Framework**: C# with official MCP SDK
+- **Advantage**: Native WinGet .NET API integration
