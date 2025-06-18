@@ -1,0 +1,61 @@
+# Project Instantiation Rule
+
+When a user requests a new project (e.g., "Create new project: ProjectName"), do the following:
+
+- By default, set the project title to the name of the current folder unless the user specifies a different title.
+
+1. Locate the `_templates/memory_bank_project.md` in the Obsidian vault.
+2. Check for an existing project with the same title in `Projects/`. If a project exists, compare its `README.md` or other relevant files with the current project folder. If unsure how to proceed, the AI assistant in Cursor/Windsurf/... should ask the user for guidance before continuing.
+3. Create a new folder under `Projects/` named after the project (if not already present or after user confirmation).
+4. Copy the template structure and files into the new folder.
+5. Replace placeholders (like `{{project_name}}`) with the actual project name.
+6. Initialize `memory_bank/` files (`tasks.md`, `activeContext.md`, `progress.md`) with starter content.
+7. Create a `modes.json` file in the project folder, using the template's custom modes and workflows for the memory bank.
+8. Ensure the `.cursor/rules/isolation_rules` directory is present by cloning it from the [vanzan01/cursor-memory-bank](https://github.com/vanzan01/cursor-memory-bank) repository using the following PowerShell commands:
+   ```powershell
+   git clone --depth 1 --filter=blob:none --sparse https://github.com/vanzan01/cursor-memory-bank.git temp-cursor-memory-bank
+   Set-Location temp-cursor-memory-bank
+   git sparse-checkout init --cone
+   git sparse-checkout set .cursor/rules/isolation_rules/
+   git restore .
+   Set-Location ..
+   if (Test-Path .cursor/rules/isolation_rules) { Remove-Item .cursor/rules/isolation_rules -Recurse -Force }
+   Move-Item temp-cursor-memory-bank/.cursor/rules/isolation_rules .cursor/rules/
+   Remove-Item temp-cursor-memory-bank -Recurse -Force
+   ```
+9. (Optional) If the user does not already have custom modes set up in Cursor and requests them, download the `custom_modes` directory from the [vanzan01/cursor-memory-bank](https://github.com/vanzan01/cursor-memory-bank) repository and place it in the `.cursor` folder using the following PowerShell commands:
+   ```powershell
+   git clone --depth 1 --filter=blob:none --sparse https://github.com/vanzan01/cursor-memory-bank.git temp-cursor-memory-bank
+   Set-Location temp-cursor-memory-bank
+   git sparse-checkout init --cone
+   git sparse-checkout set custom_modes/
+   git restore .
+   Set-Location ..
+   if (Test-Path .cursor/custom_modes) { Remove-Item .cursor/custom_modes -Recurse -Force }
+   Move-Item temp-cursor-memory-bank/custom_modes .cursor/
+   Remove-Item temp-cursor-memory-bank -Recurse -Force
+   ```
+   If unsure, prompt the user to confirm whether they need to download and set up the custom modes.
+10. Instruct the user to set up the custom modes manually in Cursor (as long as `modes.json` isn't automatically read by Cursor).
+11. Open the new project folder in Obsidian for immediate editing.
+
+**Note:**
+- If the template or target folder already exists, prompt the user for confirmation before overwriting.
+- Log all automation actions for traceability.
+
+**Prerequisite:** The MCP server for Obsidian must be installed and available.
+GitHub: https://github.com/vanzan01/obsidian-mcp-server
+Example config:
+```json
+{
+  "obsidian-mcp-server": {
+    "command": "node",
+    "args": ["X:\\packages\\node\\obsidian-mcp-server\\dist\\index.js"],
+    "env": {
+      "OBSIDIAN_API_KEY": "89c4bc23fac1cdfaef89c3a3341ad0f159ecc07e01b63ef6ada37153575122bb",
+      "OBSIDIAN_BASE_URL": "http://127.0.0.1:27123",
+      "OBSIDIAN_VERIFY_SSL": "false"
+    }
+  }
+}
+```

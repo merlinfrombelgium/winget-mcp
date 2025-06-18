@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "winget": {
+      "command": "X:\\projects\\winget-mcp\\winget-mcp-server\\.venv\\Scripts\\python.exe",
+      "args": [
+        "X:\\projects\\winget-mcp\\winget-mcp-server\\main.py"
+      ],
+      "env": {
+        "PYTHONPATH": "X:\\projects\\winget-mcp\\winget-mcp-server\\src"
+      }
+    }
+  }
+}
