@@ -80,7 +80,3 @@ debug_*.py
 test_*.py
 !winget-mcp-server/tests/test_*.py
 
-# Memory bank working files (keep archive)
-memory-bank/tasks.md
-memory-bank/activeContext.md
-memory-bank/progress.md
