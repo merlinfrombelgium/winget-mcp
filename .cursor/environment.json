@@ -1,0 +1,13 @@
+{
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".",
+    "platform": "windows/amd64"
+  },
+  "terminals": [],
+  "os": "windows11",
+  "containerImage": "dockurr/windows",
+  "containerEnv": {
+    "VERSION": "11"
+  }
+}
